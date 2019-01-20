@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/colorPrimary"
+    android:paddingRight="@dimen/fab_margin"
+    android:paddingLeft="@dimen/fab_margin"
+    android:paddingTop="70dp"
+    android:paddingBottom="@dimen/fab_margin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvPhoto"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:cardCornerRadius="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="A"
+            android:textColor="#fff" />
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Arnab Kar"
+        android:textColor="#fff"
+        app:layout_constraintStart_toEndOf="@+id/cvPhoto"
+        app:layout_constraintTop_toTopOf="@+id/cvPhoto" />
+
+    <TextView
+        android:id="@+id/emailId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:text="arnab@gmail.com"
+        android:textColor="#b5b5b5"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/cvPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+</android.support.constraint.ConstraintLayout>

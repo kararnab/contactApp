@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">कांटेक्ट</string>
+    <string name="action_settings">सेटिंग्स</string>
+    <string name="name_placeholder">अर्णब कर</string>
+    <string name="work_in_progress">कार्य प्रगति पर है</string>
+    <string name="action">कार्य</string>
+    <string name="manual_call_perm_request">कॉल अनुमतियों को मैन्युअल रूप से दें</string>
+    <string name="no_contacts_subheading">बाहर जाओ और कुछ दोस्त बनाओ</string>
+    <string name="add_contact">कांटेक्ट जोड़ें</string>
+    <string name="edit_contact">कांटेक्ट परिवर्तन</string>
+    <string name="preview">प्रीव्यू</string>
+
+    <string name="name">नाम</string>
+    <string name="company">कंपनी</string>
+    <string name="phone">फ़ोन</string>
+    <string name="email">ईमेल</string>
+    <string name="notes">टिप्पणी</string>
+
+    <string name="contact">कांटेक्ट</string>
+    <string name="themes">थीम्स</string>
+    <string name="help_feedback">मदद &amp; फीडबैक</string>
+</resources>

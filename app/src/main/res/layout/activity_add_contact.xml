@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/pageBackground"
+    >
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".AddEditContact">
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:stateListAnimator="@animator/toolbar_elevation"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:fitsSystemWindows="true">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </android.support.design.widget.AppBarLayout>
+        <android.support.v7.widget.CardView
+            android:id="@+id/editImg"
+            app:cardBackgroundColor="@color/colorAccent"
+            android:onClick="saveContact"
+            android:background="?actionBarItemBackground"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="30dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+            <ImageView
+                android:src="@drawable/ic_save_24dp"
+                android:tint="#ffffff"
+                android:layout_gravity="center"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+        </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:layout_margin="@dimen/fab_margin"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:tint="?attr/textColorSecondary"
+                android:src="@drawable/ic_person_24dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+            <EditText
+                android:id="@+id/edit_name"
+                android:hint="@string/name"
+                android:singleLine="true"
+                android:backgroundTint="?attr/textColorSecondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="@dimen/fab_margin"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:tint="?attr/textColorSecondary"
+                android:src="@drawable/ic_location_city_24dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+            <EditText
+                android:id="@+id/edit_company"
+                android:hint="@string/company"
+                android:singleLine="true"
+                android:backgroundTint="?attr/textColorSecondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="@dimen/fab_margin"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:tint="?attr/textColorSecondary"
+                android:src="@drawable/ic_phone_24dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+            <EditText
+                android:id="@+id/edit_phone"
+                android:inputType="phone"
+                android:hint="@string/phone"
+                android:singleLine="true"
+                android:backgroundTint="?attr/textColorSecondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="@dimen/fab_margin"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:tint="?attr/textColorSecondary"
+                android:src="@drawable/ic_email_24dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+            <EditText
+                android:id="@+id/edit_email"
+                android:hint="@string/email"
+                android:singleLine="true"
+                android:backgroundTint="?attr/textColorSecondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="@dimen/fab_margin"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:tint="?attr/textColorSecondary"
+                android:src="@drawable/ic_insert_comment_24dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+            <EditText
+                android:id="@+id/edit_notes"
+                android:hint="@string/notes"
+                android:maxLines="5"
+                android:backgroundTint="?attr/textColorSecondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

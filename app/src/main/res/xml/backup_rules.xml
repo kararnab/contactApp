@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content xmlns:tools="http://schemas.android.com/tools">
+    <include domain="sharedpref" path="."/>
+    <exclude domain="file" path="instant-run"
+        tools:ignore="FullBackupContent" />
+    <include domain="database" path="."/>
+    <exclude domain="database" path="crash_report.db"
+        tools:ignore="FullBackupContent" />
+    <!-- App data isn't included in user's backup
+         unless client-side encryption is enabled. -->
+    <include domain="file" path="."
+        requireFlags="clientSideEncryption" />
+</full-backup-content>
