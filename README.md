@@ -32,4 +32,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Donation
 ![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)
 
-If this project help you reduce time to develop, you can give me a cup of coffee :)
+If this project help you reduce time to develop, you can give me a mug of beer :)
