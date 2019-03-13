@@ -199,6 +199,55 @@ public class MainActivity extends AppCompatActivity {
         }else{
             finish();
         }
+    }
+    
+    /**
+    Update the Contact app without Playstore
+    **/
+    private void downloadApkUpdate(String url) {
+        File appDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        String fileName = getString(R.string.app_name);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if(Build.VERSION.SDK_INT<Build.VERSION_CODES.O || getPackageManager().canRequestPackageInstalls()){
+                File toInstall = new File(appDirectory, fileName + ".apk");
+                final Uri apkUri = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".provider", toInstall);
+                downloadingUpdate(toInstall,apkUri,url);
+
+                BroadcastReceiver onComplete = new BroadcastReceiver() {
+                    public void onReceive(Context ctxt, Intent intent) {
+                        Intent install = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+                        install.setData(apkUri);
+                        install.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivity(install);
+                        unregisterReceiver(this);
+                        finish();
+                    }
+                };
+                registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            }else{
+                Toast.makeText(MainActivity.this,"Please allow app install from settings",Toast.LENGTH_LONG).show();
+            }
+        }else{
+            //Legacy code for version less than Nougat
+            String destination = appDirectory + "/";
+            destination += fileName;
+            final Uri apkUri = Uri.parse("file://" + destination);
+            File file = new File(destination);
+            downloadingUpdate(file,apkUri,url);
+
+            BroadcastReceiver onComplete = new BroadcastReceiver() {
+                public void onReceive(Context ctxt, Intent intent) {
+                    Intent install = new Intent(Intent.ACTION_VIEW);
+                    install.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    install.setDataAndType(apkUri,
+                            "application/vnd.android.package-archive");
+                    startActivity(install);
+                    unregisterReceiver(this);
+                    finish();
+                }
+            };
+            registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        }
     }
 }
