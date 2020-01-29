@@ -2,7 +2,7 @@ package com.kararnab.contacts;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.View;
 
 public class UiUtils {

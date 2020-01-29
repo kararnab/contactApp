@@ -1,11 +1,11 @@
 package com.kararnab.contacts;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.core.view.GravityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/colorPrimary"
     android:paddingRight="@dimen/fab_margin"
@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cvPhoto"
         android:layout_width="32dp"
         android:layout_height="32dp"
@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:text="A"
             android:textColor="#fff" />
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/userName"
@@ -50,4 +50,4 @@
         app:layout_constraintStart_toEndOf="@+id/cvPhoto"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

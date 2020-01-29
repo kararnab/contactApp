@@ -1,32 +1,42 @@
 package com.kararnab.contacts;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.core.content.FileProvider;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.appcompat.widget.Toolbar;
+
+import android.os.Environment;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewTreeObserver;
+import android.widget.Toast;
 
 import com.kararnab.contacts.callbacks.DebouncedOnClickListener;
 import com.kararnab.contacts.room.Contact;
 import com.kararnab.contacts.room.ContactViewModel;
 import com.kararnab.contacts.widgets.EmptyRecyclerView;
 
+import java.io.File;
 import java.util.List;
 
 import timber.log.Timber;
@@ -44,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -212,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
             if(Build.VERSION.SDK_INT<Build.VERSION_CODES.O || getPackageManager().canRequestPackageInstalls()){
                 File toInstall = new File(appDirectory, fileName + ".apk");
                 final Uri apkUri = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".provider", toInstall);
-                downloadingUpdate(toInstall,apkUri,url);
+                downloadUpdate(toInstall,apkUri,url);
 
                 BroadcastReceiver onComplete = new BroadcastReceiver() {
                     public void onReceive(Context ctxt, Intent intent) {
@@ -234,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
             destination += fileName;
             final Uri apkUri = Uri.parse("file://" + destination);
             File file = new File(destination);
-            downloadingUpdate(file,apkUri,url);
+            downloadUpdate(file, apkUri, url);
 
             BroadcastReceiver onComplete = new BroadcastReceiver() {
                 public void onReceive(Context ctxt, Intent intent) {
@@ -249,5 +259,22 @@ public class MainActivity extends AppCompatActivity {
             };
             registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         }
+    }
+
+    private void downloadUpdate(File file, Uri apkUri, String url) {
+        //todo
+        if(file.exists()) {
+            file.delete();
+        }
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+        request.setTitle("Update App");
+        request.setDescription("Download Contacts New Version");
+
+        request.setDestinationUri(apkUri);
+        final DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        if(manager!=null) {
+            manager.enqueue(request);
+        }
+
     }
 }
