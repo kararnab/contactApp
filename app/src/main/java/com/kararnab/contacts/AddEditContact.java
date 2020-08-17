@@ -12,6 +12,8 @@ import android.widget.EditText;
 import com.kararnab.contacts.room.Contact;
 import com.kararnab.contacts.room.ContactViewModel;
 
+import java.util.UUID;
+
 public class AddEditContact extends AppCompatActivity {
 
     EditText edit_name,edit_company,edit_phone,edit_email,edit_notes;
@@ -61,12 +63,13 @@ public class AddEditContact extends AppCompatActivity {
     }
 
     public void saveContact(View view){
-        int id = getIntent().getIntExtra("id", 0);
-        Contact contact = new Contact(edit_phone.getText().toString(),edit_name.getText().toString(),edit_company.getText().toString(),edit_email.getText().toString(),edit_notes.getText().toString());
+        String id;
         if(isEditMode) {
-            contact.setId(id);
-            //mContactViewModel.getContact(id, contact);
+            id = getIntent().getStringExtra("id");
+        } else {
+            id = UUID.randomUUID().toString();
         }
+        Contact contact = new Contact(id, edit_phone.getText().toString(),edit_name.getText().toString(),edit_company.getText().toString(),edit_email.getText().toString(),edit_notes.getText().toString());
         mContactViewModel.insert(contact);
         finish();
     }

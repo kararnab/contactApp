@@ -18,10 +18,10 @@ import androidx.room.PrimaryKey
  */
 
 @Entity(tableName = "contact_table")
-data class Contact(@ColumnInfo(name = "phone")var phone: String, @ColumnInfo(name = "name") var name: String, var company: String, var emailId: String, var notes: String) {
-    @PrimaryKey(autoGenerate = true)
+data class Contact(@PrimaryKey var id: String, @ColumnInfo(name = "phone")var phone: String, @ColumnInfo(name = "name") var name: String, var company: String, var emailId: String, var notes: String) {
+    /*@PrimaryKey(autoGenerate = true)
     @NonNull
-    var id:Int = 0
+    var id:Int = 0*/
 
     @Ignore
     var isSelected: Boolean = false

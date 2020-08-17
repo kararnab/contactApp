@@ -42,6 +42,7 @@ public class ContactViewActivity extends AppCompatActivity {
 
         initViews();
 
+        id = getIntent().getStringExtra("id");
         phoneNo = getIntent().getStringExtra("phoneNo");
         name = getIntent().getStringExtra("name");
         company = getIntent().getStringExtra("company");
@@ -53,7 +54,7 @@ public class ContactViewActivity extends AppCompatActivity {
         mFABEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editContact(phoneNo,name,company,email,notes);
+                editContact(id, phoneNo,name,company,email,notes);
             }
         });
 
@@ -106,8 +107,8 @@ public class ContactViewActivity extends AppCompatActivity {
         tvCompany.setText(company);
     }
 
-    void editContact(String phoneNo,String name,String company,String email,String notes){
-        Contact contact = new Contact(phoneNo,name,company,email,notes);
+    void editContact(String id, String phoneNo,String name,String company,String email,String notes){
+        Contact contact = new Contact(id, phoneNo,name,company,email,notes);
         MainActivity.navigateToAddContact(ContactViewActivity.this,contact);
     }
 
@@ -171,7 +172,7 @@ public class ContactViewActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==1){
-            editContact(phoneNo,name,company,email,notes);
+            editContact(id,phoneNo,name,company,email,notes);
             return true;
         }else if(item.getItemId()==android.R.id.home){
             finish();

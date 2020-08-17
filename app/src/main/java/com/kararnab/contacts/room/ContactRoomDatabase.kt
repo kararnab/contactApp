@@ -1,13 +1,11 @@
 package com.kararnab.contacts.room
 
 import android.app.Application
-import android.os.AsyncTask
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import java.util.*
 
 @Database(entities = [Contact::class], version = 1, exportSchema = false)
 abstract class ContactRoomDatabase : RoomDatabase() {
@@ -58,7 +56,7 @@ abstract class ContactRoomDatabase : RoomDatabase() {
          */
         suspend fun populateDbAsync(mDao: ContactDao) {
             mDao.deleteAll()
-            val contact = Contact("9876543210", "Arnab", "RoomDb", "arnab@gmail.com", "")
+            val contact = Contact(UUID.randomUUID().toString(), "9876543210", "Arnab", "RoomDb", "arnab@gmail.com", "")
             mDao.insert(contact)
         }
     }
