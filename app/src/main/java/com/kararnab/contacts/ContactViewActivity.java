@@ -30,7 +30,7 @@ public class ContactViewActivity extends AppCompatActivity {
     private static final int REQUEST_CALL = 0;
     private boolean appBarExpanded = true;
 
-    String phoneNo,name,company,email,notes;
+    String id, phoneNo, name, company, email, notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +119,7 @@ public class ContactViewActivity extends AppCompatActivity {
         if(isAdminPriviledge){
             Intent intent = new Intent(Intent.ACTION_CALL);
             intent.setData(Uri.parse("tel:"+phoneNo));
-            startActivity(intent);
+            startActivity(intent); //TODO: Android M Runtime Permissions
         }else{
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:"+phoneNo));

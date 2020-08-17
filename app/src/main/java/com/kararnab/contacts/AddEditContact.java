@@ -1,7 +1,6 @@
 package com.kararnab.contacts;
 
 import androidx.lifecycle.ViewModelProviders;
-import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
@@ -31,6 +30,7 @@ public class AddEditContact extends AppCompatActivity {
         isEditMode = getIntent().getBooleanExtra("editContact",false);
         if(isEditMode){
             getSupportActionBar().setTitle(getString(R.string.edit_contact));
+            String id = getIntent().getStringExtra("id");
             String phoneNo = getIntent().getStringExtra("phoneNo");
             String name = getIntent().getStringExtra("name");
             String company = getIntent().getStringExtra("company");
@@ -60,15 +60,15 @@ public class AddEditContact extends AppCompatActivity {
         mContactViewModel = ViewModelProviders.of(this).get(ContactViewModel.class);
     }
 
-    void saveContact(Contact contact){
-        //todo save to db as new if contact id doesn't exist else edit and save
+    public void saveContact(View view){
+        int id = getIntent().getIntExtra("id", 0);
+        Contact contact = new Contact(edit_phone.getText().toString(),edit_name.getText().toString(),edit_company.getText().toString(),edit_email.getText().toString(),edit_notes.getText().toString());
+        if(isEditMode) {
+            contact.setId(id);
+            //mContactViewModel.getContact(id, contact);
+        }
         mContactViewModel.insert(contact);
         finish();
-    }
-
-    public void saveContact(View view){
-        Contact contact = new Contact(edit_phone.getText().toString(),edit_name.getText().toString(),edit_company.getText().toString(),edit_email.getText().toString(),edit_notes.getText().toString());
-        saveContact(contact);
     }
 
     @Override

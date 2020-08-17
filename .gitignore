@@ -8,6 +8,7 @@ local.properties
 
 # User-specific configurations
 .idea/gradle.xml
+.idea/jarRepositories.xml
 .idea/assetWizardSettings.xml
 .idea/libraries/
 .idea/workspace.xml

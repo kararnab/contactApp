@@ -167,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
             putContactInIntent(intent,contact);
         }
         context.startActivity(intent);
-
     }
     void navigateToViewContact(Contact contact){
         Intent intent = new Intent(this,ContactViewActivity.class);
@@ -176,10 +175,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static void putContactInIntent(Intent intent,Contact contact){
+        intent.putExtra("id",contact.getId());
         intent.putExtra("phoneNo",contact.getPhone());
         intent.putExtra("name",contact.getName());
         intent.putExtra("company",contact.getCompany());
-        intent.putExtra("email",contact.getEmail());
+        intent.putExtra("email",contact.getEmailId());
         intent.putExtra("notes",contact.getNotes());
     }
 
