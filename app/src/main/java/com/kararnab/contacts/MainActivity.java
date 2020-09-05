@@ -39,6 +39,7 @@ import com.kararnab.contacts.widgets.EmptyRecyclerView;
 import java.io.File;
 import java.util.List;
 
+import kotlin.Unit;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,11 +66,15 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         initListeners();
 
-        mAdapter = new ContactListAdapter(this, new ContactListAdapter.ContactListener() {
+        /*mAdapter = new ContactListAdapter2((contact) -> {
+            navigateToViewContact(contact);
+            return Unit.INSTANCE;
+        });*/
+
+        mAdapter = new ContactListAdapter(new ContactListAdapter.ContactListener() {
             @Override
-            public void onItemClicked(int position,View view) {
-                navigateToViewContact(mAdapter.getContact(position));
-                //navigateToAddContact(mAdapter.getContact(position));
+            public void onItemClicked(Contact contact) {
+                navigateToViewContact(contact);
             }
 
             @Override

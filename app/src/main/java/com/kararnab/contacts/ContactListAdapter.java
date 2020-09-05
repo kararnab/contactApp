@@ -15,10 +15,10 @@ import com.kararnab.contacts.room.Contact;
 import java.util.Collections;
 import java.util.List;
 
-class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ContactViewHolder> {
+public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ContactViewHolder> {
 
     public interface ContactListener{
-        void onItemClicked(int position,View view);
+            void onItemClicked(Contact contact);
         boolean onItemLongClicked(int position,View view);
     }
 
@@ -40,12 +40,7 @@ class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.Contact
             contactInitials.setText(contact.getName().length()>0? contact.getName().charAt(0)+"":"");
             contactCircle.setCardBackgroundColor(UiUtils.materialColor(contact.getName().length()));
             selectSwitch.setDisplayedChild(contact.isSelected()?1:0);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onItemClicked(getAdapterPosition(),v);
-                }
-            });
+            itemView.setOnClickListener(v -> listener.onItemClicked(contact));
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -55,19 +50,18 @@ class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.Contact
         }
     }
 
-    private final LayoutInflater mInflater;
     private List<Contact> mContacts = Collections.emptyList(); // Cached copy of words
     private final ContactListener listener;
 
-    ContactListAdapter(Context context, ContactListener listener) {
-        mInflater = LayoutInflater.from(context);
+    public ContactListAdapter(ContactListener listener) {
         this.listener = listener;
     }
 
     @NonNull
     @Override
     public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.contact_item, parent, false);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View itemView = inflater.inflate(R.layout.contact_item, parent, false);
         return new ContactViewHolder(itemView);
     }
 
@@ -77,7 +71,7 @@ class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.Contact
         holder.bind(contact,listener);
     }
 
-    void setContacts(List<Contact> contacts) {
+    public void setContacts(List<Contact> contacts) {
         mContacts = contacts;
         notifyDataSetChanged();
     }
