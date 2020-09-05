@@ -39,6 +39,7 @@ import com.kararnab.contacts.widgets.EmptyRecyclerView;
 import java.io.File;
 import java.util.List;
 
+import kotlin.Unit;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,11 +66,15 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         initListeners();
 
-        mAdapter = new ContactListAdapter(this, new ContactListAdapter.ContactListener() {
+        /*mAdapter = new ContactListAdapter2((contact) -> {
+            navigateToViewContact(contact);
+            return Unit.INSTANCE;
+        });*/
+
+        mAdapter = new ContactListAdapter(new ContactListAdapter.ContactListener() {
             @Override
-            public void onItemClicked(int position,View view) {
-                navigateToViewContact(mAdapter.getContact(position));
-                //navigateToAddContact(mAdapter.getContact(position));
+            public void onItemClicked(Contact contact) {
+                navigateToViewContact(contact);
             }
 
             @Override
@@ -167,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
             putContactInIntent(intent,contact);
         }
         context.startActivity(intent);
-
     }
     void navigateToViewContact(Contact contact){
         Intent intent = new Intent(this,ContactViewActivity.class);
@@ -176,10 +180,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static void putContactInIntent(Intent intent,Contact contact){
+        intent.putExtra("id",contact.getId());
         intent.putExtra("phoneNo",contact.getPhone());
         intent.putExtra("name",contact.getName());
         intent.putExtra("company",contact.getCompany());
-        intent.putExtra("email",contact.getEmail());
+        intent.putExtra("email",contact.getEmailId());
         intent.putExtra("notes",contact.getNotes());
     }
 
