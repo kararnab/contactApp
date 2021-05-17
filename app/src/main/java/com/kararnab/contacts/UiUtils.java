@@ -42,7 +42,7 @@ public class UiUtils {
      * @param num Number based on which color will be generated
      */
     public static int materialColor(int num){
-        int colors[] = {0xFF861e6f,0xFF5d55cc,0xFF266037,0xFFff7e7e,0xFFff9019};
+        int[] colors = {0xFF861e6f,0xFF5d55cc,0xFF266037,0xFFff7e7e,0xFFff9019};
         return colors[num%5];
     }
 }

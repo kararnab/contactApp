@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -101,12 +101,9 @@ class ContactListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mWordViewModel = ViewModelProviders.of(this).get(ContactViewModel::class.java) // Usually what we want: Passing Fragment's view as LifecycleOwner
+        mWordViewModel = ViewModelProvider(this).get(ContactViewModel::class.java) // Usually what we want: Passing Fragment's view as LifecycleOwner
         mWordViewModel!!.allContacts.observe(viewLifecycleOwner, Observer {
             mAdapter.setContacts(it);
         })
     }
-
-
-
 }

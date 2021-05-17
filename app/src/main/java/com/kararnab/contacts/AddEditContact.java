@@ -1,6 +1,6 @@
 package com.kararnab.contacts;
 
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.kararnab.contacts.room.Contact;
 import com.kararnab.contacts.room.ContactViewModel;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class AddEditContact extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class AddEditContact extends AppCompatActivity {
         setContentView(R.layout.activity_add_contact);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         initViews();
         isEditMode = getIntent().getBooleanExtra("editContact",false);
@@ -59,7 +60,7 @@ public class AddEditContact extends AppCompatActivity {
         edit_phone = findViewById(R.id.edit_phone);
         edit_email = findViewById(R.id.edit_email);
         edit_notes = findViewById(R.id.edit_notes);
-        mContactViewModel = ViewModelProviders.of(this).get(ContactViewModel.class);
+        mContactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
     }
 
     public void saveContact(View view){

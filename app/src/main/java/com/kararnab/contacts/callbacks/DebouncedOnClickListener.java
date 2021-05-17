@@ -14,7 +14,7 @@ import java.util.WeakHashMap;
 public abstract class DebouncedOnClickListener implements View.OnClickListener {
 
     private final long minimumInterval;
-    private Map<View, Long> lastClickMap;
+    private final Map<View, Long> lastClickMap;
 
     /**
      * Implement this in your subclass instead of onClick

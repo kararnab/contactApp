@@ -1,6 +1,5 @@
 package com.kararnab.contacts;
 
-import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;

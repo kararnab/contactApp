@@ -20,6 +20,8 @@ import com.kararnab.contacts.callbacks.DebouncedOnClickListener;
 import com.kararnab.contacts.callbacks.PermissionsCallback;
 import com.kararnab.contacts.room.Contact;
 
+import java.util.Objects;
+
 public class ContactViewActivity extends AppCompatActivity {
 
     TextView mEmailId, mPhoneNumber, tvCompany;
@@ -38,7 +40,7 @@ public class ContactViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact_view);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         initViews();
 
