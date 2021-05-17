@@ -57,7 +57,7 @@ class ContactListFragment : Fragment() {
         rvContacts = view.findViewById(R.id.rvContacts)
         rvContacts.setEmptyView(view.findViewById(R.id.emptyContacts))
         mAddContactFab.setOnClickListener(object : DebouncedOnClickListener(500) {
-            override fun onDebouncedClick(view: View) {
+            override fun onDebouncedClick(v: View?) {
 
                 /*checkCallPermission(new PermissionsCallback() {
                     @Override
