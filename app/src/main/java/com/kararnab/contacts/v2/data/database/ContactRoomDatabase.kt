@@ -1,4 +1,4 @@
-package com.kararnab.contacts.room
+package com.kararnab.contacts.v2.data.database
 
 import android.app.Application
 import androidx.room.Database

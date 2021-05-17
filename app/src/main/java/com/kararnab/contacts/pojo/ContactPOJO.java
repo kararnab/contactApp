@@ -3,8 +3,10 @@ package com.kararnab.contacts.pojo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.kararnab.contacts.v2.data.database.Contact;
+
 /**
- * As of release 1, replaced by {@link com.kararnab.contacts.room.Contact}
+ * As of release 1, replaced by {@link Contact}
  * @deprecated
  */
 @Deprecated

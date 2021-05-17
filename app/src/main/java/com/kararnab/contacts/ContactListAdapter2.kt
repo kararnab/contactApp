@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.kararnab.contacts.room.Contact
+import com.kararnab.contacts.v2.data.database.Contact
 
 //Usage: ContactListAdapter2({ selectedUser: User -> onListItemClicked(selectedUser) })
 class ContactListAdapter2(private val clickListener: (Contact) -> Unit): Adapter<MyViewMolder>() {

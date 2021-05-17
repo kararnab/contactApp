@@ -8,7 +8,7 @@ import timber.log.Timber;
 
 import static android.util.Log.INFO;
 
-class ContactsTimberTree extends Timber.Tree {
+public class ContactsTimberTree extends Timber.Tree {
 
     @Override
     public boolean isLoggable(@Nullable String tag,int priority) {

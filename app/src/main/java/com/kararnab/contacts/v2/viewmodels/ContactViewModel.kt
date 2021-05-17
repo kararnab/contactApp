@@ -1,9 +1,11 @@
-package com.kararnab.contacts.room
+package com.kararnab.contacts.v2.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.kararnab.contacts.v2.data.database.Contact
+import com.kararnab.contacts.v2.data.database.ContactRepository
 import kotlinx.coroutines.launch
 
 /**

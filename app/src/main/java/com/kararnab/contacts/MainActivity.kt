@@ -1,23 +1,16 @@
 package com.kararnab.contacts
 
-import android.app.DownloadManager
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.FileProvider
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
@@ -27,11 +20,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.kararnab.contacts.ContactListAdapter.ContactListener
 import com.kararnab.contacts.callbacks.DebouncedOnClickListener
-import com.kararnab.contacts.room.Contact
-import com.kararnab.contacts.room.ContactViewModel
+import com.kararnab.contacts.v2.data.database.Contact
+import com.kararnab.contacts.v2.viewmodels.ContactViewModel
 import com.kararnab.contacts.widgets.EmptyRecyclerView
 import timber.log.Timber
-import java.io.File
 
 class MainActivity : AppCompatActivity() {
     private var mAddContactFab: FloatingActionButton? = null
@@ -158,77 +150,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             finish()
         }
-    }
-
-    /**
-     * Update the Contact app without Playstore
-     */
-    private fun downloadApkUpdate(url: String) {
-        val appDirectory =
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        val fileName = getString(R.string.app_name)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O || packageManager.canRequestPackageInstalls()) {
-                val toInstall = File(appDirectory, "$fileName.apk")
-                val apkUri = FileProvider.getUriForFile(
-                    this@MainActivity,
-                    BuildConfig.APPLICATION_ID + ".provider",
-                    toInstall
-                )
-                downloadUpdate(toInstall, apkUri, url)
-                val onComplete: BroadcastReceiver = object : BroadcastReceiver() {
-                    override fun onReceive(ctxt: Context, intent: Intent) {
-                        val install = Intent(Intent.ACTION_INSTALL_PACKAGE)
-                        install.data = apkUri
-                        install.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                        startActivity(install)
-                        unregisterReceiver(this)
-                        finish()
-                    }
-                }
-                registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
-            } else {
-                Toast.makeText(
-                    this@MainActivity,
-                    "Please allow app install from settings",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        } else {
-            //Legacy code for version less than Nougat
-            var destination = "$appDirectory/"
-            destination += fileName
-            val apkUri = Uri.parse("file://$destination")
-            val file = File(destination)
-            downloadUpdate(file, apkUri, url)
-            val onComplete: BroadcastReceiver = object : BroadcastReceiver() {
-                override fun onReceive(ctxt: Context, intent: Intent) {
-                    val install = Intent(Intent.ACTION_VIEW)
-                    install.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    install.setDataAndType(
-                        apkUri,
-                        "application/vnd.android.package-archive"
-                    )
-                    startActivity(install)
-                    unregisterReceiver(this)
-                    finish()
-                }
-            }
-            registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
-        }
-    }
-
-    private fun downloadUpdate(file: File, apkUri: Uri, url: String) {
-        //todo
-        if (file.exists()) {
-            file.delete()
-        }
-        val request = DownloadManager.Request(Uri.parse(url))
-        request.setTitle("Update App")
-        request.setDescription("Download Contacts New Version")
-        request.setDestinationUri(apkUri)
-        val manager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-        manager.enqueue(request)
     }
 
     companion object {

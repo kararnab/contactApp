@@ -7,8 +7,8 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import com.kararnab.contacts.room.Contact
-import com.kararnab.contacts.room.ContactViewModel
+import com.kararnab.contacts.v2.data.database.Contact
+import com.kararnab.contacts.v2.viewmodels.ContactViewModel
 import java.util.*
 
 class AddEditContact : AppCompatActivity() {

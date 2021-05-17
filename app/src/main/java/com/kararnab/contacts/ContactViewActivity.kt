@@ -16,11 +16,10 @@ import androidx.core.app.ActivityCompat
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.kararnab.contacts.ContactViewActivity
 import com.kararnab.contacts.MainActivity.Companion.navigateToAddContact
 import com.kararnab.contacts.callbacks.DebouncedOnClickListener
 import com.kararnab.contacts.callbacks.PermissionsCallback
-import com.kararnab.contacts.room.Contact
+import com.kararnab.contacts.v2.data.database.Contact
 import java.util.*
 import kotlin.math.abs
 

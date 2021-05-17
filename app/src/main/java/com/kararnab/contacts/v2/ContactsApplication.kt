@@ -1,4 +1,4 @@
-package com.kararnab.contacts
+package com.kararnab.contacts.v2
 
 import android.app.Application
 import android.content.BroadcastReceiver
@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
+import com.kararnab.contacts.ContactsTimberTree
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
-import com.kararnab.contacts.room.Contact;
+import com.kararnab.contacts.v2.data.database.Contact;
 
 import java.util.Collections;
 import java.util.List;
