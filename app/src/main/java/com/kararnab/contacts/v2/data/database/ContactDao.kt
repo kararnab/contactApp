@@ -2,6 +2,7 @@ package com.kararnab.contacts.v2.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.kararnab.contacts.v2.util.Constants.Companion.CONTACT_TABLE
 
 @Dao
 interface ContactDao {
@@ -16,16 +17,16 @@ interface ContactDao {
     suspend fun delete(contact: Contact)
 
     //There is no convenience annotation for deleting multiple entities, so annotate the method with the generic @Query
-    @Query("SELECT * from contact_table WHERE id= :id LIMIT 1")
+    @Query("SELECT * from $CONTACT_TABLE WHERE id= :id LIMIT 1")
     fun getContact(id: Int) : List<Contact>
 
     //There is no convenience annotation for deleting multiple entities, so annotate the method with the generic @Query
-    @Query("delete from contact_table")
+    @Query("delete from $CONTACT_TABLE")
     suspend fun deleteAll()
 
-    @Query("SELECT * from contact_table ORDER BY name ASC")
+    @Query("SELECT * from $CONTACT_TABLE ORDER BY name ASC")
     fun getAlphabetizedWords(): LiveData<List<Contact>>
 
-    @Query("SELECT * from contact_table where name like :s1+'%' ORDER BY name ASC")
+    @Query("SELECT * from $CONTACT_TABLE where name like :s1+'%' ORDER BY name ASC")
     fun filterWords(s1: String?): LiveData<List<Contact>>
 }

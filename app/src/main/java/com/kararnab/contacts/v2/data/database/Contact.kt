@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.kararnab.contacts.v2.util.Constants.Companion.CONTACT_TABLE
 
 /**
  * A basic class representing an entity that is a row in a one-column database table.
@@ -16,7 +17,7 @@ import androidx.room.PrimaryKey
  * https://developer.android.com/topic/libraries/architecture/room.html
  */
 
-@Entity(tableName = "contact_table")
+@Entity(tableName = CONTACT_TABLE)
 data class Contact(@PrimaryKey var id: String, @ColumnInfo(name = "phone")var phone: String, @ColumnInfo(name = "name") var name: String, var company: String, var emailId: String, var notes: String) {
     /*@PrimaryKey(autoGenerate = true)
     @NonNull

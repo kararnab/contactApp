@@ -9,7 +9,7 @@ data class Result(
     @SerializedName("id")
     val id: Int,
     @SerializedName("name")
-    val title: String,
+    val name: String,
     @SerializedName("phoneNumber")
     val phoneNumber: String,
     @SerializedName("companyName")

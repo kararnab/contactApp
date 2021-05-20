@@ -29,4 +29,13 @@ class LocalDataSource @Inject constructor(
         return contactDao.filterWords(searchText)
     }
 
+    fun getContact(id: Int, fallbackContact: Contact) : Contact? {
+        val contacts = contactDao.getContact(id)
+        return if(contacts.isNotEmpty()) {
+            contacts[0]
+        }else{
+            null
+        }
+    }
+
 }

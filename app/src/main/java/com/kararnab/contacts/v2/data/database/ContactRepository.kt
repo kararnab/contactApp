@@ -2,13 +2,25 @@ package com.kararnab.contacts.v2.data.database
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import com.kararnab.contacts.v2.data.LocalDataSource
+import com.kararnab.contacts.v2.data.RemoteDataSource
+import javax.inject.Inject
 
 /**
  * Abstracted Repository as promoted by the Architecture Guide.
  * https://developer.android.com/topic/libraries/architecture/guide.html
  */
-class ContactRepository(application: Application) {
-    private val mContactDao: ContactDao
+class ContactRepository@Inject constructor(
+    remoteDataSource: RemoteDataSource,
+    localDataSource: LocalDataSource
+) {
+
+    val remote = remoteDataSource
+    val local = localDataSource
+
+
+
+    /*private val mContactDao: ContactDao
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
@@ -25,21 +37,12 @@ class ContactRepository(application: Application) {
         mContactDao.update(contact)
     }
 
-    fun getContact(id: Int, fallbackContact: Contact) : Contact {
-        val contacts = mContactDao.getContact(id)
-        return if(contacts.isNotEmpty()) {
-            contacts[0]
-        }else{
-            fallbackContact
-        }
-    }
-
-    /*private class insertAsyncTask internal constructor(private val mAsyncTaskDao: ContactDao) : AsyncTask<Contact?, Void?, Void?>() {
+    private class insertAsyncTask internal constructor(private val mAsyncTaskDao: ContactDao) : AsyncTask<Contact?, Void?, Void?>() {
         protected override fun doInBackground(vararg params: Contact): Void? {
             mAsyncTaskDao.insert(params[0])
             return null
         }
-    }*/
+    }
 
     // Note that in order to unit test the WordRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
@@ -49,5 +52,5 @@ class ContactRepository(application: Application) {
         val db = ContactRoomDatabase.getInstance(application)
         mContactDao = db.contactDao()
         allContacts = mContactDao.getAlphabetizedWords()
-    }
+    }*/
 }

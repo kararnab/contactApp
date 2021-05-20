@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         // Add an observer on the LiveData returned by getAlphabetizedWords.
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
-        mWordViewModel!!.allContacts.observe(
+        mWordViewModel!!.getAllContacts().observe(
             this,
             { contacts -> // Update the cached copy of the contacts in the adapter.
                 mAdapter!!.setContacts(contacts)

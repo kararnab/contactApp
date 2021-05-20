@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.kararnab.contacts.v2.util.Constants.Companion.DATABASE_NAME
 import java.util.*
 
 @Database(entities = [Contact::class], version = 1, exportSchema = false)
@@ -21,7 +22,7 @@ abstract class ContactRoomDatabase : RoomDatabase() {
                 return tempInstance
             }
             synchronized(this) {
-                val instance = Room.databaseBuilder(context.applicationContext, ContactRoomDatabase::class.java, "contact_database")
+                val instance = Room.databaseBuilder(context.applicationContext, ContactRoomDatabase::class.java, DATABASE_NAME)
                         .fallbackToDestructiveMigration() // Wipes and rebuilds instead of migrating if no Migration object.
                         .addCallback(sRoomDatabaseCallback)
                         .build()
