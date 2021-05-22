@@ -9,11 +9,11 @@ class RemoteDataSource @Inject constructor(
     private val foodRecipesApi: ContactSyncApi
 ) {
 
-    suspend fun getContacts(queries: Map<String, String>): Response<Contacts> {
+    suspend fun readAllContacts(queries: Map<String, String>): Response<Contacts> {
         return foodRecipesApi.getContacts(queries)
     }
 
-    suspend fun backupContacts(queries: Map<String, String>): Response<Contacts> {
+    suspend fun backupContactsToCloud(queries: Map<String, String>): Response<Contacts> {
         return foodRecipesApi.backupContacts(queries)
     }
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="contact"
-            type="com.kararnab.contacts.v2.models.Result" />
+            type="com.kararnab.contacts.v2.data.database.Contact" />
     </data>
 
     <LinearLayout
@@ -32,7 +32,7 @@
                     android:id="@+id/contactInitials"
                     android:gravity="center"
                     android:textColor="#fff"
-                    android:text="@{contact.name.charAt(0)}"
+                    android:text=""
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 

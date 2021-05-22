@@ -2,10 +2,10 @@ package com.kararnab.contacts.v2.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.kararnab.contacts.v2.data.Repository
 import com.kararnab.contacts.v2.data.database.Contact
-import com.kararnab.contacts.v2.data.database.ContactRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,9 +16,11 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class ContactViewModel @Inject constructor(
-    private val repository: ContactRepository,
+    private val repository: Repository,
     application: Application
 ) : AndroidViewModel(application) {
+
+    val allContacts = repository.local.readAllContacts().asLiveData();
 
     fun insert(contact: Contact) {
         viewModelScope.launch {
@@ -30,9 +32,5 @@ class ContactViewModel @Inject constructor(
         viewModelScope.launch {
             repository.local.insertOrUpdateContact(contact)
         }
-    }
-
-    fun getAllContacts(): LiveData<List<Contact>> {
-        return repository.local.readAllContacts()
     }
 }

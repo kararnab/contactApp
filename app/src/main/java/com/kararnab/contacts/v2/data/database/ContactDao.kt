@@ -3,6 +3,7 @@ package com.kararnab.contacts.v2.data.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.kararnab.contacts.v2.util.Constants.Companion.CONTACT_TABLE
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ContactDao {
@@ -25,7 +26,7 @@ interface ContactDao {
     suspend fun deleteAll()
 
     @Query("SELECT * from $CONTACT_TABLE ORDER BY name ASC")
-    fun getAlphabetizedWords(): LiveData<List<Contact>>
+    fun getAlphabetizedWords(): Flow<List<Contact>>
 
     @Query("SELECT * from $CONTACT_TABLE where name like :s1+'%' ORDER BY name ASC")
     fun filterWords(s1: String?): LiveData<List<Contact>>

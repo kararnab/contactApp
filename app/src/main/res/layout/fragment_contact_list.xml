@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="ContactsViewModel"
+            type="com.kararnab.contacts.v2.viewmodels.ContactViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -20,12 +22,6 @@
             android:contentDescription="Create New Contact"
             android:foregroundTint="?attr/colorAccent"
             app:srcCompat="@drawable/ic_add_24dp" />
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -101,7 +97,5 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </FrameLayout>
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
