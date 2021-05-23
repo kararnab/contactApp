@@ -4,7 +4,7 @@
     <string name="work_in_progress">Work in Progress</string>
     <string name="action">Action</string>
     <string name="manual_call_perm_request">Give call permissions manually</string>
-    <string name="no_contacts_subheading">Go out and make some friends</string>
+    <string name="no_contacts_subheading">Your parallel contacts show here</string>
     <string name="add_contact">Add Contact</string>
     <string name="edit_contact">Edit Contact</string>
     <string name="preview">Preview</string>
@@ -15,7 +15,7 @@
     <string name="email">Email</string>
     <string name="notes">Notes</string>
 
-    <string name="contact">Contacts</string>
+    <string name="contact">Contacts Book</string>
     <string name="themes">Themes</string>
     <string name="help_feedback">Help &amp; Feedback</string>
 

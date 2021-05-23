@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu, this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_contact_list, menu)
         return true
     }
 
@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
                 mDrawerLayout!!.openDrawer(GravityCompat.START)
                 return true
             }
-            R.id.action_settings -> return true
+            //R.id.action_settings -> return true
         }
         return super.onOptionsItemSelected(item)
     }

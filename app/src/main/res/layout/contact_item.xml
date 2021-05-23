@@ -10,11 +10,14 @@
     </data>
 
     <LinearLayout
+        onContactClickListener="@{contact}"
         android:padding="@dimen/fab_margin"
-        android:background="?android:selectableItemBackground"
+        android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/contactCircle"

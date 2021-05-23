@@ -9,11 +9,15 @@
         android:name="com.kararnab.contacts.v2.ui.ContactListFragment"
         android:label="ContactListFragment" >
         <action
-            android:id="@+id/action_contactListFragment_to_contactDetailFragment"
-            app:destination="@id/contactDetailFragment" />
+            android:id="@+id/action_contactListFragment_to_contactViewFragment"
+            app:destination="@id/contactViewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/contactDetailFragment"
-        android:name="com.kararnab.contacts.ui.ContactDetailFragment"
-        android:label="ContactDetailFragment" />
+        android:id="@+id/contactViewFragment"
+        android:name="com.kararnab.contacts.v2.ui.ContactViewFragment"
+        android:label="ContactViewFragment" >
+        <argument
+            android:name="contact"
+            app:argType="com.kararnab.contacts.v2.data.database.Contact" />
+    </fragment>
 </navigation>
