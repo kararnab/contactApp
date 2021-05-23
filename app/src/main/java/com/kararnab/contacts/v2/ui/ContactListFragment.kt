@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kararnab.contacts.R
 import com.kararnab.contacts.databinding.FragmentContactListBinding
@@ -14,6 +16,7 @@ import com.kararnab.contacts.v2.adapters.ContactsAdapter
 import com.kararnab.contacts.v2.data.database.Contact
 import com.kararnab.contacts.v2.viewmodels.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 
 /**
  * https://stackoverflow.com/questions/30369246/implementing-searchview-as-per-the-material-design-guidelines
@@ -30,7 +33,8 @@ class ContactListFragment : Fragment() {
     private lateinit var mToolbar: Toolbar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
+        (requireActivity() as AppCompatActivity).supportActionBar!!.show()
         _binding = FragmentContactListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.contactsViewModel = mContactViewModel
@@ -57,6 +61,20 @@ class ContactListFragment : Fragment() {
         binding.rvContacts.adapter = mAdapter
         binding.rvContacts.layoutManager = LinearLayoutManager(requireContext())
         binding.rvContacts.setEmptyView(binding.emptyContacts)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_settings -> {
+                try {
+                    val action = ContactListFragmentDirections.actionContactListFragmentToSettingsFragment()
+                    NavHostFragment.findNavController(this).navigate(action)
+                } catch (e: Exception) {
+                }
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

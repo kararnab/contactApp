@@ -5,15 +5,19 @@
 - [x] Toolbar elevation on scroll
 - [x] Swipe to refresh loader color switch
 - [x] Permission framework support for Android M and above
-- [x] Preview RecyclerView content
+- [ ] Preview RecyclerView content
 - [x] Dynamic Theme support using Day/Night Mode
 - [x] Build Variant Free/Pro version
 - [x] Timber for logging
-- [x] Leak canary for memory leaks
+- [x] Dagger2 and Hilt for Dependency Injection
+- [x] MVVM with Repository pattern
+- [x] Android Jetpack Navigation
+- [ ] Leak canary for memory leaks
 - [x] Multi language support
 - [x] Empty View for no data
 - [ ] Icons change
-- [ ] Room/SQLite
+- [x] Room/SQLite
+- [x] Retrofit and Okhttp for Networking
 
 ## Authors
 
@@ -30,6 +34,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Powered by Need For Privacy™
 
 ## Donation
-![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)
+[![Donate](https://pay.google.com/about/static_kcs/images/logos/footer-logo.svg)](https://pay.google.com?phone=XXXXXXXXXX)
 
 If this project help you reduce time to develop, you can give me a cup of coffee :)

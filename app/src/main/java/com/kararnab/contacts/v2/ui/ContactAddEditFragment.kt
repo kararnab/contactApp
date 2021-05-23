@@ -7,21 +7,21 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.kararnab.contacts.databinding.FragmentContactViewBinding
+import com.kararnab.contacts.databinding.FragmentAddContactBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ContactViewFragment: Fragment() {
+class ContactAddEditFragment: Fragment() {
 
     val args: ContactViewFragmentArgs by navArgs()
-    private var _binding: FragmentContactViewBinding? = null
+    private var _binding: FragmentAddContactBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setHasOptionsMenu(true)
         (requireActivity() as AppCompatActivity).supportActionBar!!.hide()
 
-        _binding = FragmentContactViewBinding.inflate(inflater, container, false)
+        _binding = FragmentAddContactBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.contact = args.contact;
 
@@ -35,8 +35,8 @@ class ContactViewFragment: Fragment() {
 
     companion object {
         @JvmStatic
-        fun getInstance(): ContactViewFragment {
-            return ContactViewFragment()
+        fun getInstance(): ContactAddEditFragment {
+            return ContactAddEditFragment()
         }
     }
 }

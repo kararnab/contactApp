@@ -15,7 +15,6 @@ class ContactRowBinding {
         @JvmStatic
         fun onContactClickListener(contactRowLayout: LinearLayout, result: Contact) {
             contactRowLayout.setOnClickListener {
-                Log.e("ONCLICK:", result.name)
                 try {
                     val action = ContactListFragmentDirections.actionContactListFragmentToContactViewFragment(result)
                     contactRowLayout.findNavController().navigate(action)

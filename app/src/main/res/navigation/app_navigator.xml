@@ -11,6 +11,12 @@
         <action
             android:id="@+id/action_contactListFragment_to_contactViewFragment"
             app:destination="@id/contactViewFragment" />
+        <action
+            android:id="@+id/action_contactListFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_contactListFragment_to_contactAddEditFragment"
+            app:destination="@id/contactAddEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactViewFragment"
@@ -20,4 +26,12 @@
             android:name="contact"
             app:argType="com.kararnab.contacts.v2.data.database.Contact" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.kararnab.contacts.v2.ui.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/contactAddEditFragment"
+        android:name="com.kararnab.contacts.v2.ui.ContactAddEditFragment"
+        android:label="ContactAddEditFragment" />
 </navigation>
