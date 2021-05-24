@@ -47,7 +47,9 @@ class ContactListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Setup any handles to view objects here
         binding.fab.setOnClickListener {
-            mContactViewModel.insert(Contact("2","9876543210", "Rohan", "Company1", "rohan@gmail.com", "Notes here it is."))
+            val contact = Contact(mAdapter.itemCount+1)
+            val action = ContactListFragmentDirections.actionContactListFragmentToContactAddEditFragment(contact, false)
+            NavHostFragment.findNavController(this).navigate(action)
         }
 
         setupRecyclerView()

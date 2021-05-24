@@ -1,8 +1,6 @@
 package com.kararnab.contacts.v2.bindingadapters
 
-import android.util.Log
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
 import com.kararnab.contacts.v2.data.database.Contact

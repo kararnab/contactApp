@@ -15,7 +15,6 @@ class SettingsFragment: Fragment() {
     val args: ContactViewFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        setHasOptionsMenu(true);
         (requireActivity() as AppCompatActivity).supportActionBar!!.hide()
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         return view

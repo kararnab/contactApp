@@ -1,14 +1,70 @@
 package com.kararnab.contacts
 
+import android.Manifest
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.Transformation
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.kararnab.contacts.callbacks.PermissionsCallback
 
 object UiUtils {
+
+    fun checkCallPermission(context: Context,callback: PermissionsCallback) {
+        if (ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.CALL_PHONE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Camera permission has not been granted.
+            callback.onRejected()
+        } else {
+            // Permission is already available, now you can call.
+            callback.onGranted()
+        }
+    }
+
+    fun requestCallPermission(activity: Activity) {
+        // https://github.com/tbruyelle/RxPermissions, we can simplify it later using rxPermissions
+        if (ActivityCompat.shouldShowRequestPermissionRationale(
+                activity,
+                Manifest.permission.CALL_PHONE
+            )
+        ) {
+            // Provide an additional rationale to the user if the permission was not granted,
+            // user has previously denied the permission.
+            Toast.makeText(activity, R.string.manual_call_perm_request, Toast.LENGTH_LONG).show()
+        } else {
+            // Call permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(
+                activity,
+                arrayOf(Manifest.permission.CALL_PHONE),
+                ContactViewActivity.REQUEST_CALL
+            )
+        }
+    }
+
+    fun callPhoneNumber(context: Context, phoneNo: String?, isAdminPriviledge: Boolean) {
+        if (isAdminPriviledge) {
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = Uri.parse("tel:$phoneNo")
+            context.startActivity(intent) //TODO: Android M Runtime Permissions
+        } else {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:$phoneNo")
+            context.startActivity(intent)
+        }
+    }
+
     fun setSwipeRefreshLayoutLoaderColors(swipeRefreshLayout: SwipeRefreshLayout) {
         swipeRefreshLayout.setColorSchemeResources(
             android.R.color.holo_blue_light,

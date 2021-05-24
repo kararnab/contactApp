@@ -1,25 +1,20 @@
 package com.kararnab.contacts
 
-import android.Manifest
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.kararnab.contacts.MainActivity.Companion.navigateToAddContact
+import com.kararnab.contacts.UiUtils.callPhoneNumber
+import com.kararnab.contacts.UiUtils.checkCallPermission
+import com.kararnab.contacts.UiUtils.requestCallPermission
 import com.kararnab.contacts.callbacks.DebouncedOnClickListener
 import com.kararnab.contacts.callbacks.PermissionsCallback
-import com.kararnab.contacts.v2.data.database.Contact
 import java.util.*
 import kotlin.math.abs
 
@@ -57,13 +52,13 @@ class ContactViewActivity : AppCompatActivity() {
         mFABEdit!!.setOnClickListener { editContact(id, phoneNo, name, company, email, notes) }
         mActionCall!!.setOnClickListener(object : DebouncedOnClickListener(500) {
             override fun onDebouncedClick(v: View?) {
-                checkCallPermission(object : PermissionsCallback {
+                checkCallPermission(this@ContactViewActivity, object : PermissionsCallback {
                     override fun onGranted() {
-                        callPhoneNumber(phoneNo, true)
+                        callPhoneNumber(this@ContactViewActivity, phoneNo, true)
                     }
 
                     override fun onRejected() {
-                        requestCallPermission()
+                        requestCallPermission(this@ContactViewActivity)
                     }
                 })
             }
@@ -111,58 +106,12 @@ class ContactViewActivity : AppCompatActivity() {
         email: String?,
         notes: String?
     ) {
-        val contact = Contact(id!!, phoneNo!!, name!!, company!!, email!!, notes!!)
-        navigateToAddContact(this@ContactViewActivity, contact)
+        /*val contact = Contact(id!!, phoneNo!!, name!!, company!!, email!!, notes!!)
+        navigateToAddContact(this@ContactViewActivity, contact)*/
     }
 
     fun formattedPhoneNo(phoneNo: String?): String {
         return phoneNo!!.replaceFirst("(\\d{3})(\\d{3})(\\d+)".toRegex(), "($1) $2-$3")
-    }
-
-    fun callPhoneNumber(phoneNo: String?, isAdminPriviledge: Boolean) {
-        if (isAdminPriviledge) {
-            val intent = Intent(Intent.ACTION_CALL)
-            intent.data = Uri.parse("tel:$phoneNo")
-            startActivity(intent) //TODO: Android M Runtime Permissions
-        } else {
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:$phoneNo")
-            startActivity(intent)
-        }
-    }
-
-    fun checkCallPermission(callback: PermissionsCallback) {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CALL_PHONE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // Camera permission has not been granted.
-            callback.onRejected()
-        } else {
-            // Permission is already available, now you can call.
-            callback.onGranted()
-        }
-    }
-
-    private fun requestCallPermission() {
-        // https://github.com/tbruyelle/RxPermissions, we can simplify it later using rxPermissions
-        if (ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                Manifest.permission.CALL_PHONE
-            )
-        ) {
-            // Provide an additional rationale to the user if the permission was not granted,
-            // user has previously denied the permission.
-            Toast.makeText(this, R.string.manual_call_perm_request, Toast.LENGTH_LONG).show()
-        } else {
-            // Call permission has not been granted yet. Request it directly.
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CALL_PHONE),
-                REQUEST_CALL
-            )
-        }
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
@@ -193,6 +142,6 @@ class ContactViewActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val REQUEST_CALL = 0
+        const val REQUEST_CALL = 0
     }
 }

@@ -57,7 +57,7 @@ abstract class ContactRoomDatabase : RoomDatabase() {
          */
         suspend fun populateDbAsync(mDao: ContactDao) {
             mDao.deleteAll()
-            val contact = Contact(UUID.randomUUID().toString(), "9876543210", "Arnab", "RoomDb", "arnab@gmail.com", "")
+            val contact = Contact(Random().nextInt(), "9876543210", "Arnab", "RoomDb", "arnab@gmail.com", "")
             mDao.insert(contact)
         }
     }

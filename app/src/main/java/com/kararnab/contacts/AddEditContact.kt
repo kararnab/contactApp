@@ -7,7 +7,6 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import com.kararnab.contacts.v2.data.database.Contact
 import com.kararnab.contacts.v2.viewmodels.ContactViewModel
 import java.util.*
 
@@ -66,9 +65,9 @@ class AddEditContact : AppCompatActivity() {
     }
 
     fun saveContact(view: View?) {
-        val id: String?
+        /*val id: Int?
         id = if (isEditMode) {
-            intent.getStringExtra("id")
+            intent.getIntExtra("id")
         } else {
             UUID.randomUUID().toString()
         }
@@ -80,7 +79,7 @@ class AddEditContact : AppCompatActivity() {
             edit_email!!.text.toString(),
             edit_notes!!.text.toString()
         )
-        mContactViewModel!!.insert(contact)
+        mContactViewModel!!.insert(contact)*/
         finish()
     }
 

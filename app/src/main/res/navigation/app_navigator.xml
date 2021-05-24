@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_navigator"
     app:startDestination="@id/contactListFragment">
 
@@ -25,6 +26,9 @@
         <argument
             android:name="contact"
             app:argType="com.kararnab.contacts.v2.data.database.Contact" />
+        <action
+            android:id="@+id/action_contactViewFragment_to_contactAddEditFragment"
+            app:destination="@id/contactAddEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -33,5 +37,13 @@
     <fragment
         android:id="@+id/contactAddEditFragment"
         android:name="com.kararnab.contacts.v2.ui.ContactAddEditFragment"
-        android:label="ContactAddEditFragment" />
+        android:label="ContactAddEditFragment">
+        <argument
+            android:name="contact"
+            app:argType="com.kararnab.contacts.v2.data.database.Contact" />
+        <argument
+            android:name="isEditMode"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

@@ -21,7 +21,7 @@ import com.kararnab.contacts.v2.util.Constants.Companion.CONTACT_TABLE
 
 @Parcelize
 @Entity(tableName = CONTACT_TABLE)
-data class Contact(@PrimaryKey var id: String, @ColumnInfo(name = "phone")var phone: String, @ColumnInfo(name = "name") var name: String, var company: String, var emailId: String, var notes: String) :
+data class Contact(@PrimaryKey var id: Int, @ColumnInfo(name = "phone") var phone: String = "", @ColumnInfo(name = "name") var name: String = "", var company: String = "", var emailId: String = "", var notes: String = "") :
     Parcelable {
     /*@PrimaryKey(autoGenerate = true)
     @NonNull
