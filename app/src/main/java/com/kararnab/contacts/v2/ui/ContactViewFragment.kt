@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kararnab.contacts.R
+import com.kararnab.contacts.UiUtils
 import com.kararnab.contacts.UiUtils.callPhoneNumber
 import com.kararnab.contacts.UiUtils.checkCallPermission
 import com.kararnab.contacts.UiUtils.requestCallPermission
@@ -134,12 +135,14 @@ class ContactViewFragment: BottomSheetDialogFragment() {
     }
 
     private fun hideAppBar(view: View) {
+        //UiUtils.collapse(view)
         val params = view.layoutParams
         params.height = 0
         view.layoutParams = params
     }
 
     private fun showView(view: View, size: Int) {
+        //UiUtils.expand(view)
         val params = view.layoutParams
         params.height = size
         view.layoutParams = params

@@ -21,7 +21,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/contactCircle"
-            app:cardBackgroundColor="#ff9019"
+            computeCardBackgroundColor="@{contact.name}"
             app:cardCornerRadius="16dp"
             android:layout_width="32dp"
             android:layout_height="32dp">
@@ -35,7 +35,7 @@
                     android:id="@+id/contactInitials"
                     android:gravity="center"
                     android:textColor="#fff"
-                    android:text=""
+                    initialsText="@{contact.name}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 

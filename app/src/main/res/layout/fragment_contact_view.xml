@@ -19,7 +19,7 @@
                 android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorAccent">
+                android:background="?attr/colorAccent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="?attr/pageBackground"
                     android:padding="15dp">
                     <LinearLayout
                         android:id="@+id/profileLayout"
@@ -86,6 +87,7 @@
                             android:id="@+id/userImage"
                             android:layout_width="?attr/actionBarSize"
                             android:layout_height="?attr/actionBarSize"
+                            app:tint="?attr/colorAccent"
                             android:src="@drawable/ic_person_24dp" />
 
 
@@ -115,7 +117,7 @@
                             android:layout_height="?attr/actionBarSize"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/ic_phone_24dp"
-                            app:tint="@color/colorAccent"
+                            app:tint="?attr/colorAccent"
                             />
 
                         <LinearLayout
@@ -161,7 +163,7 @@
                                     android:layout_height="?attr/actionBarSize"
                                     android:background="?attr/selectableItemBackgroundBorderless"
                                     android:src="@drawable/ic_baseline_message_24"
-                                    app:tint="@color/colorPrimary" />
+                                    app:tint="?attr/colorPrimary" />
 
                             </LinearLayout>
 
@@ -240,7 +242,7 @@
                             android:layout_height="?attr/actionBarSize"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/ic_email_24dp"
-                            app:tint="@color/colorAccent" />
+                            app:tint="?attr/colorAccent" />
 
 
                         <LinearLayout
@@ -336,7 +338,7 @@
                             android:layout_height="?attr/actionBarSize"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/ic_location_city_24dp"
-                            app:tint="@color/colorAccent" />
+                            app:tint="?attr/colorAccent" />
 
 
                         <LinearLayout
