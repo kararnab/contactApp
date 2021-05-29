@@ -19,7 +19,7 @@
             android:id="@+id/action_contactListFragment_to_contactAddEditFragment"
             app:destination="@id/contactAddEditFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/contactViewFragment"
         android:name="com.kararnab.contacts.v2.ui.ContactViewFragment"
         android:label="ContactViewFragment" >
@@ -29,7 +29,7 @@
         <action
             android:id="@+id/action_contactViewFragment_to_contactAddEditFragment"
             app:destination="@id/contactAddEditFragment" />
-    </fragment>
+    </dialog>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.kararnab.contacts.v2.ui.SettingsFragment"

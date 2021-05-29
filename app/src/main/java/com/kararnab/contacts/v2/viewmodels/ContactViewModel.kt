@@ -33,4 +33,11 @@ class ContactViewModel @Inject constructor(
             repository.local.insertOrUpdateContact(contact)
         }
     }
+
+    fun delete(contact: Contact, callback: () -> Unit) {
+        viewModelScope.launch {
+            repository.local.deleteContact(contact)
+            callback()
+        }
+    }
 }

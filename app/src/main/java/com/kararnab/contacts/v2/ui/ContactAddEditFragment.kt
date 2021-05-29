@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kararnab.contacts.R
@@ -26,6 +26,7 @@ class ContactAddEditFragment: Fragment() {
     private var edit_email: EditText? = null
     private var edit_notes: EditText? = null
     private var editImg: CardView? = null
+    private var btnDelete: Button? = null
 
     private val mContactViewModel : ContactViewModel by viewModels()
     val args: ContactAddEditFragmentArgs by navArgs()
@@ -45,6 +46,7 @@ class ContactAddEditFragment: Fragment() {
             //TODO: Update the titleBar to getString(R.string.edit_contact)
         } else {
             //Add mode
+            btnDelete?.visibility = View.GONE
             //TODO: Update the titleBar to getString(R.string.add_contact)
         }
         editImg?.setOnClickListener {
@@ -56,6 +58,12 @@ class ContactAddEditFragment: Fragment() {
             }
             findNavController().popBackStack()
         }
+        btnDelete?.setOnClickListener{
+            val editedContact = Contact(contact.id, edit_phone!!.text.toString(), edit_name!!.text.toString(), edit_company!!.text.toString(), edit_email!!.text.toString(), edit_notes!!.text.toString())
+            mContactViewModel.delete(editedContact) {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     fun initViews(parent: View) {
@@ -66,6 +74,7 @@ class ContactAddEditFragment: Fragment() {
             edit_email = findViewById(R.id.edit_email)
             edit_notes = findViewById(R.id.edit_notes)
             editImg = findViewById(R.id.editImg)
+            btnDelete = findViewById(R.id.btnDelete)
         }
     }
 
