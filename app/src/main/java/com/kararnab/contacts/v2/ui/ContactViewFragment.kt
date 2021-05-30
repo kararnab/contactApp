@@ -3,7 +3,6 @@ package com.kararnab.contacts.v2.ui
 import android.app.Dialog
 import android.content.Intent
 import android.content.res.Resources
-import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -15,10 +14,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kararnab.contacts.R
-import com.kararnab.contacts.UiUtils
-import com.kararnab.contacts.UiUtils.callPhoneNumber
-import com.kararnab.contacts.UiUtils.checkCallPermission
-import com.kararnab.contacts.UiUtils.requestCallPermission
+import com.kararnab.contacts.v2.util.UiUtils.callPhoneNumber
+import com.kararnab.contacts.v2.util.UiUtils.checkCallPermission
+import com.kararnab.contacts.v2.util.UiUtils.requestCallPermission
+import com.kararnab.contacts.v2.util.UiUtils.smsPhoneNumber
 import com.kararnab.contacts.callbacks.DebouncedOnClickListener
 import com.kararnab.contacts.callbacks.PermissionsCallback
 import com.kararnab.contacts.databinding.FragmentContactViewBinding
@@ -100,11 +99,7 @@ class ContactViewFragment: BottomSheetDialogFragment() {
             if(TextUtils.isEmpty(phoneNo)) {
                 Toast.makeText(context, "No Phone number", Toast.LENGTH_LONG).show()
             } else {
-                val smsIntent = Intent(Intent.ACTION_SENDTO)
-                smsIntent.addCategory(Intent.CATEGORY_DEFAULT)
-                smsIntent.type = "vnd.android-dir/mms-sms"
-                smsIntent.data = Uri.parse("sms:${phoneNo}")
-                startActivity(smsIntent)
+                smsPhoneNumber(requireContext(), phoneNo)
             }
         }
 

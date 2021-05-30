@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
-import com.kararnab.contacts.UiUtils
+import com.kararnab.contacts.v2.util.UiUtils
 import com.kararnab.contacts.v2.data.database.Contact
 import com.kararnab.contacts.v2.ui.ContactListFragmentDirections
 import java.lang.Exception

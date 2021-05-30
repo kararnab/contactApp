@@ -1,4 +1,4 @@
-package com.kararnab.contacts
+package com.kararnab.contacts.v2.util
 
 import android.Manifest
 import android.animation.Animator
@@ -15,6 +15,7 @@ import android.view.animation.Transformation
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.kararnab.contacts.R
 import com.kararnab.contacts.callbacks.PermissionsCallback
 
 object UiUtils {
@@ -48,7 +49,7 @@ object UiUtils {
             ActivityCompat.requestPermissions(
                 activity,
                 arrayOf(Manifest.permission.CALL_PHONE),
-                ContactViewActivity.REQUEST_CALL
+                0
             )
         }
     }
@@ -63,6 +64,14 @@ object UiUtils {
             intent.data = Uri.parse("tel:$phoneNo")
             context.startActivity(intent)
         }
+    }
+
+    fun smsPhoneNumber(context: Context, phoneNo: String) {
+        val smsIntent = Intent(Intent.ACTION_SENDTO)
+        smsIntent.addCategory(Intent.CATEGORY_DEFAULT)
+        smsIntent.type = "vnd.android-dir/mms-sms"
+        smsIntent.data = Uri.parse("sms:${phoneNo}")
+        context.startActivity(smsIntent)
     }
 
     fun setSwipeRefreshLayoutLoaderColors(swipeRefreshLayout: SwipeRefreshLayout) {

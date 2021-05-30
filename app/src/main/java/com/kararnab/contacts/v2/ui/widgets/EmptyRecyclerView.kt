@@ -1,4 +1,4 @@
-package com.kararnab.contacts.widgets
+package com.kararnab.contacts.v2.ui.widgets
 
 import android.content.Context
 import android.util.AttributeSet

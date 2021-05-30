@@ -8,8 +8,8 @@ import android.os.IBinder
 import android.text.TextUtils
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.kararnab.contacts.MainActivity
 import com.kararnab.contacts.R
+import com.kararnab.contacts.v2.ui.ContactMainActivity
 import kotlinx.coroutines.*
 import org.json.JSONObject
 import java.lang.Exception
@@ -85,7 +85,7 @@ class PollingService: Service() {
             }
         }
         fun getCompatNotification(context: Context, title: String, body: String): Notification {
-            val startIntent = Intent(context, MainActivity::class.java)
+            val startIntent = Intent(context, ContactMainActivity::class.java)
             val contentIntent: PendingIntent = PendingIntent.getActivity(context, 1000, startIntent, 0)
             val builder = NotificationCompat.Builder(context, SYNC_COMMUNICATION_CHANNEL_ID)
             builder

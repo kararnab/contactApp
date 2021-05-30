@@ -116,7 +116,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/preview" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.kararnab.contacts.widgets.EmptyRecyclerView
+            <com.kararnab.contacts.v2.ui.widgets.EmptyRecyclerView
                 android:id="@+id/rvContacts"
                 tools:listitem="@layout/contact_item"
                 android:layout_width="match_parent"
