@@ -25,7 +25,7 @@
         android:label="ContactViewFragment" >
         <argument
             android:name="contact"
-            app:argType="com.kararnab.contacts.v2.data.database.Contact" />
+            app:argType="com.kararnab.contacts.v2.data.database.entities.PhoneContact" />
         <action
             android:id="@+id/action_contactViewFragment_to_contactAddEditFragment"
             app:destination="@id/contactAddEditFragment" />
@@ -40,7 +40,7 @@
         android:label="ContactAddEditFragment">
         <argument
             android:name="contact"
-            app:argType="com.kararnab.contacts.v2.data.database.Contact" />
+            app:argType="com.kararnab.contacts.v2.data.database.entities.PhoneContact" />
         <argument
             android:name="isEditMode"
             android:defaultValue="false"

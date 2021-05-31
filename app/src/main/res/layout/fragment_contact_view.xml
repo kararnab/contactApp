@@ -6,7 +6,7 @@
     <data>
         <variable
             name="contact"
-            type="com.kararnab.contacts.v2.data.database.Contact" />
+            type="com.kararnab.contacts.v2.data.database.entities.PhoneContact" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                             android:layout_marginStart="15dp"
                             android:layout_weight="1"
                             tools:text="Arnab Kar"
-                            android:text="@{contact.name}"
+                            android:text="@{contact.user.name}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                     </LinearLayout>
@@ -144,7 +144,7 @@
                                         android:id="@+id/phoneNumber"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@{contact.phone}"
+                                        android:text="@{contact.phone.get(0).phoneNumber}"
                                         tools:text="(000) 000-000"
                                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
@@ -152,7 +152,8 @@
                                         android:id="@+id/typeOfNumber1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Mobile"
+                                        tools:text="Personal"
+                                        android:text="@{contact.phone.get(0).phoneType}"
                                         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                                 </LinearLayout>
@@ -261,7 +262,7 @@
                                     android:id="@+id/emailId"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@{contact.emailId}"
+                                    android:text="@{contact.user.emailId}"
                                     tools:text="email@email.com"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
@@ -357,7 +358,7 @@
                                     android:id="@+id/tvCompany"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@{contact.company}"
+                                    android:text="@{contact.user.company}"
                                     tools:text="Company Name Here"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 

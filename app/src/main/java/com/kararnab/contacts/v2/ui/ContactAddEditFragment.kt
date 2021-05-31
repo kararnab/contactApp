@@ -13,7 +13,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kararnab.contacts.R
-import com.kararnab.contacts.v2.data.database.Contact
+import com.kararnab.contacts.v2.data.database.entities.Contact
+import com.kararnab.contacts.v2.data.database.entities.Phone
+import com.kararnab.contacts.v2.data.database.entities.PhoneContact
 import com.kararnab.contacts.v2.viewmodels.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,7 +44,7 @@ class ContactAddEditFragment: Fragment() {
         val isEditMode = args.isEditMode
         val contact = args.contact
         if(isEditMode) {
-            populateFields(contact.phone, contact.name, contact.company, contact.emailId, contact.notes)
+            populateFields(contact.phone[0].phoneNumber, contact.user.name, contact.user.company, contact.user.emailId, contact.user.notes)
             //TODO: Update the titleBar to getString(R.string.edit_contact)
         } else {
             //Add mode
@@ -50,16 +52,23 @@ class ContactAddEditFragment: Fragment() {
             //TODO: Update the titleBar to getString(R.string.add_contact)
         }
         editImg?.setOnClickListener {
-            val editedContact = Contact(contact.id, edit_phone!!.text.toString(), edit_name!!.text.toString(), edit_company!!.text.toString(), edit_email!!.text.toString(), edit_notes!!.text.toString())
-            if(isEditMode) {
-                mContactViewModel.update(editedContact)
-            } else {
-                mContactViewModel.insert(editedContact)
+            val editedContact = PhoneContact(
+                Contact(contact.user.id,
+                    edit_name!!.text.toString(),
+                    edit_company!!.text.toString(),
+                    edit_email!!.text.toString(),
+                    edit_notes!!.text.toString()),
+                listOf(Phone(0, contact.user.id, edit_phone!!.text.toString(), "Personal"))
+            )
+            mContactViewModel.upsert(editedContact) {
+                findNavController().popBackStack()
             }
-            findNavController().popBackStack()
         }
         btnDelete?.setOnClickListener{
-            val editedContact = Contact(contact.id, edit_phone!!.text.toString(), edit_name!!.text.toString(), edit_company!!.text.toString(), edit_email!!.text.toString(), edit_notes!!.text.toString())
+            val editedContact = PhoneContact(
+                contact.user,
+                contact.phone
+            )
             mContactViewModel.delete(editedContact) {
                 findNavController().popBackStack()
             }

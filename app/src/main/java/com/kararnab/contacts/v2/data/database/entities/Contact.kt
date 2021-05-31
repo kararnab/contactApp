@@ -1,10 +1,9 @@
-package com.kararnab.contacts.v2.data.database
+package com.kararnab.contacts.v2.data.database.entities
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.kararnab.contacts.v2.util.Constants.Companion.CONTACT_TABLE
 
@@ -20,13 +19,8 @@ import com.kararnab.contacts.v2.util.Constants.Companion.CONTACT_TABLE
  */
 
 @Parcelize
-@Entity(tableName = CONTACT_TABLE)
-data class Contact(@PrimaryKey var id: Int, @ColumnInfo(name = "phone") var phone: String = "", @ColumnInfo(name = "name") var name: String = "", var company: String = "", var emailId: String = "", var notes: String = "") :
-    Parcelable {
-    /*@PrimaryKey(autoGenerate = true)
-    @NonNull
-    var id:Int = 0*/
-
-    @Ignore
-    var isSelected: Boolean = false
-}
+@Entity(
+    tableName = CONTACT_TABLE
+)
+data class Contact(@PrimaryKey var id: Long, @ColumnInfo(name = "name") var name: String = "", var company: String = "", var emailId: String = "", var notes: String = "") :
+    Parcelable

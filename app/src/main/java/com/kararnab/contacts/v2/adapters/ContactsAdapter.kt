@@ -5,17 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kararnab.contacts.databinding.ContactItemBinding
-import com.kararnab.contacts.v2.data.database.Contact
+import com.kararnab.contacts.v2.data.database.entities.Contact
+import com.kararnab.contacts.v2.data.database.entities.PhoneContact
 import com.kararnab.contacts.v2.util.ContactsDiffUtil
 
 class ContactsAdapter : RecyclerView.Adapter<ContactsAdapter.MyViewHolder>() {
 
-    private var contacts = emptyList<Contact>()
+    private var contacts = emptyList<PhoneContact>()
 
     class MyViewHolder(private val binding: ContactItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(result: Contact){
+        fun bind(result: PhoneContact){
             binding.contact = result
             binding.executePendingBindings()
         }
@@ -43,7 +44,7 @@ class ContactsAdapter : RecyclerView.Adapter<ContactsAdapter.MyViewHolder>() {
         return contacts.size
     }
 
-    fun setData(newData: List<Contact>){
+    fun setData(newData: List<PhoneContact>){
         val recipesDiffUtil =
             ContactsDiffUtil(contacts, newData)
         val diffUtilResult = DiffUtil.calculateDiff(recipesDiffUtil)

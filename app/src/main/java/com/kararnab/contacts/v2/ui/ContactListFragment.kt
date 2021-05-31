@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kararnab.contacts.R
 import com.kararnab.contacts.databinding.FragmentContactListBinding
 import com.kararnab.contacts.v2.adapters.ContactsAdapter
-import com.kararnab.contacts.v2.data.database.Contact
+import com.kararnab.contacts.v2.data.database.entities.Contact
+import com.kararnab.contacts.v2.data.database.entities.PhoneContact
 import com.kararnab.contacts.v2.viewmodels.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
@@ -47,8 +48,9 @@ class ContactListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Setup any handles to view objects here
         binding.fab.setOnClickListener {
-            val contact = Contact(mAdapter.itemCount+1)
-            val action = ContactListFragmentDirections.actionContactListFragmentToContactAddEditFragment(contact, false)
+            val contact = Contact((mAdapter.itemCount + 1).toLong())
+            val action = ContactListFragmentDirections.actionContactListFragmentToContactAddEditFragment(
+                PhoneContact(contact, listOf()), false)
             NavHostFragment.findNavController(this).navigate(action)
         }
 

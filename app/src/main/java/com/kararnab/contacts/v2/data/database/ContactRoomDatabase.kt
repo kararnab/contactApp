@@ -5,10 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.kararnab.contacts.v2.data.database.entities.Contact
+import com.kararnab.contacts.v2.data.database.entities.Phone
 import com.kararnab.contacts.v2.util.Constants.Companion.DATABASE_NAME
 import java.util.*
 
-@Database(entities = [Contact::class], version = 1, exportSchema = false)
+@Database(entities = [Contact::class, Phone::class], version = 1, exportSchema = false)
 abstract class ContactRoomDatabase : RoomDatabase() {
     abstract fun contactDao(): ContactDao
 
@@ -57,7 +59,7 @@ abstract class ContactRoomDatabase : RoomDatabase() {
          */
         suspend fun populateDbAsync(mDao: ContactDao) {
             mDao.deleteAll()
-            val contact = Contact(Random().nextInt(), "9876543210", "Arnab", "RoomDb", "arnab@gmail.com", "")
+            val contact = Contact(Random().nextLong(), "9876543210", "Arnab", "RoomDb", "arnab@gmail.com")
             mDao.insert(contact)
         }
     }

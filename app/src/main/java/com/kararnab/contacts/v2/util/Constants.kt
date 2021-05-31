@@ -9,6 +9,7 @@ class Constants {
         // ROOM Database
         const val DATABASE_NAME = "contact_database"
         const val CONTACT_TABLE = "contact_table"
+        const val PHONE_TABLE = "phone_table"
 
     }
 

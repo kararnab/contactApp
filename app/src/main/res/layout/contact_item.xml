@@ -6,7 +6,7 @@
     <data>
         <variable
             name="contact"
-            type="com.kararnab.contacts.v2.data.database.Contact" />
+            type="com.kararnab.contacts.v2.data.database.entities.PhoneContact" />
     </data>
 
     <LinearLayout
@@ -21,7 +21,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/contactCircle"
-            computeCardBackgroundColor="@{contact.name}"
+            computeCardBackgroundColor="@{contact.user.name}"
             app:cardCornerRadius="16dp"
             android:layout_width="32dp"
             android:layout_height="32dp">
@@ -35,7 +35,7 @@
                     android:id="@+id/contactInitials"
                     android:gravity="center"
                     android:textColor="#fff"
-                    initialsText="@{contact.name}"
+                    initialsText="@{contact.user.name}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -51,7 +51,7 @@
 
         <TextView
             android:id="@+id/contactName"
-            android:text="@{contact.name}"
+            android:text="@{contact.user.name}"
             tools:text="@string/name_placeholder"
             android:maxLines="1"
             android:ellipsize="end"
